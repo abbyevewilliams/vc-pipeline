@@ -1,21 +1,36 @@
-# Snakemake workflow: `<name>`
+# A snakemake pipeline for variant calling *Zosterops* aligned reads
 
-[![Snakemake](https://img.shields.io/badge/snakemake-≥6.3.0-brightgreen.svg)](https://snakemake.github.io)
-[![GitHub actions status](https://github.com/<owner>/<repo>/workflows/Tests/badge.svg?branch=main)](https://github.com/<owner>/<repo>/actions?query=branch%3Amain+workflow%3ATests)
+*Abby Williams, University of Oxford, 2025*
 
+A pipeline for calling variants from reads aligned to the *Zosterops lateralis* pseudochrome assembly. This pipeline combines alignments originating from museum specimens (high coverage) and live birds (low coverage). We downsample the high-coverage reads and call genotype likelihoods using ANGSD.
 
-A Snakemake workflow for `<description>`
+---
 
+**Workflow**
 
-## Usage
+Specific steps are outlined below:
+1. Downsample high-coverage museum reads using Samtools
+2. Call genotype likelihoods using ANGSD
+3. Do PCA using PCAngsd
+4. Assess population structure using NGSadmix
 
-The usage of this workflow is described in the [Snakemake Workflow Catalog](https://snakemake.github.io/snakemake-workflow-catalog/?usage=<owner>%2F<repo>).
+---
 
-If you use this workflow in a paper, don't forget to give credits to the authors by citing the URL of this (original) <repo>sitory and its DOI (see above).
+**Installation and usage**
 
-# TODO
+Use conda/mamba to install the environment from the `environment.yaml` provided.
 
-* Replace `<owner>` and `<repo>` everywhere in the template (also under .github/workflows) with the correct `<repo>` name and owning user or organization.
-* Replace `<name>` with the workflow name (can be the same as `<repo>`).
-* Replace `<description>` with a description of what the workflow does.
-* The workflow will occur in the snakemake-workflow-catalog once it has been made public. Then the link under "Usage" will point to the usage instructions if `<owner>` and `<repo>` were correctly set.
+`conda create --prefix ./snakemake-env --file environment.yaml`
+
+Do the following prior to running: 
+- edit file paths in `config/config.yaml`
+- add any appropriate profiles in `profiles/`
+- edit the `run.sh` depending on your HPC environment
+
+To run snakemake, run:
+
+`sbatch run.sh`
+
+---
+
+This pipeline was built in [snakemake](https://snakemake.github.io/) using [this workflow template](https://github.com/snakemake-workflows/snakemake-workflow-template).
