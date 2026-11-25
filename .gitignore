@@ -1,12 +1,17 @@
 results/**
 resources/**
+*.error
+*.log
 logs/**
 .snakemake
 .snakemake/**
 .test/results/*
+config/get_samples.sh
 workflow/notebooks/.ipynb_checkpoints/**
 **/.Rhistory
 **/*.Rproj
 **/.Rproj.user/**
 **/.RData
 **/Rplots.pdf
+snakemake-env/
+profiles*

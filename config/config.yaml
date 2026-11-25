@@ -1,8 +1,8 @@
-sample_sheet: ".test/config/samples.tsv"
+ref_genome: "/data/biol-silvereye/data/ref_genome/zosterops_lateralis/GCA_965231275.1_bZosLat1.hap1.1_genomic.fna"
 
-get_genome:
-  ncbi_ftp: https://ftp.ncbi.nlm.nih.gov/genomes/all/GCF/000/146/045/GCF_000146045.2_R64/GCF_000146045.2_R64_genomic.fna.gz
+chrom_list: "/data/biol-silvereye/data/ref_genome/zosterops_lateralis/autosomes.txt"
 
-simulate_reads:
-  read_length: 100
-  read_number: 10000
+samples: "/data/biol-silvereye/ball6625/pipelines/vc-pipeline/config/samples.txt"
+
+cohorts:
+  all: [griseotinctus, xanthochroa, minutus, inornatus, tenuirostris]

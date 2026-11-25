@@ -1,37 +1,29 @@
-# Main entrypoint of the workflow.
-# Please follow the best practices:
-# https://snakemake.readthedocs.io/en/stable/snakefiles/best_practices.html,
-# in particular regarding the standardized folder structure mentioned there.
+# ==============================================================================
+#     Setup
+# ==============================================================================
 
-
-# load configuration
-# -----------------------------------------------------
+# Point to config file
 configfile: "config/config.yaml"
 
-
-# load rules
-# -----------------------------------------------------
+# Shared metadata, settings and helper functions
 include: "rules/common.smk"
-include: "rules/process_reads.smk"
 
+# ==============================================================================
+#     Default "All" Target Rule
+# ==============================================================================
 
-# optional messages, log and error handling
-# -----------------------------------------------------
-onstart:
-    print("\n--- Analysis started ---\n")
+# This rule requests that other rules be run.
 
-
-onsuccess:
-    print("\n--- Workflow finished! ---\n")
-
-
-onerror:
-    print("\n--- An error occurred! ---\n")
-
-
-# target rules
-# -----------------------------------------------------
 rule all:
-    default_target: True
     input:
-        "results/multiqc/multiqc_report.html",
+        expand("results/gvcfs/{sample}.g.vcf.gz",sample=SAMPLES)
+#       expand("results/db/{cohort}_{chrom}", cohort=list(config["cohorts"]),chrom=CHROMS)
+
+localrules:
+    all
+
+# ==============================================================================
+#     Rule Modules
+# ==============================================================================
+
+include: "rules/call.smk"

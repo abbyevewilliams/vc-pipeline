@@ -1,0 +1,10 @@
+name: snakemake-env
+channels:
+  - conda-forge
+  - bioconda
+  - defaults
+dependencies:
+  - conda
+  - python
+  - snakemake
+  - snakemake-executor-plugin-slurm
