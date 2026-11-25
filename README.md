@@ -7,7 +7,7 @@ A Snakemake workflow for calling variants from aligned reads with GATK.
 
 ---
 
-- [Snakemake workflow: `call-pipeline`](#vc-pipeline)
+- [Snakemake workflow: `vc-pipeline`](#vc-pipeline)
   - [Workflow](#workflow)
   - [Setup](#setup)
   - [Configuration](#configuration)
